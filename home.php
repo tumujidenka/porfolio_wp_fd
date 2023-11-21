@@ -12,6 +12,7 @@
 			$loop_counter = 0; 
 			$args = array(
 				'post_type' => 'post',  // 投稿タイプ。通常の投稿の場合は'post'
+				'category_name' => 'products', //カテゴリの名称
 				'posts_per_page' => 8, // 表示する投稿数
 				'orderby' => 'date',    // 日付でソート
 				'order' => 'ASC'        // 昇順（古い投稿から順）
@@ -26,8 +27,8 @@
 				<a class="contents" href="<?php the_permalink(); ?>">
 				<div class="contents__figcontainer"><img alt="chair" src="<?php echo get_stylesheet_directory_uri(); ?>/img/item<?php echo $loop_counter?>.jpg"></div>
 				<div class="contents__description">
-					<p><?php the_title();?></p>
-					<p>¥<?php echo get_post_meta($post_id,'price',true)?> + tax</p>
+				<p><?php the_title();?></p>
+				<p>¥<?php echo get_post_meta($post_id,'price',true)?> + tax</p>
 				</div></a>
 	        <?php endwhile; ?>
 		<?php endif; ?>

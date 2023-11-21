@@ -245,6 +245,8 @@ Author:ryoto hiji
     max-width: 100%;
     padding: 0 40px 0;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
   }
   
   .product--product2 {
