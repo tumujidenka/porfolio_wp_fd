@@ -52,19 +52,15 @@ function pagination($pages = '', $range = 2){
     //ページ数が2ページ以上の場合のみ、ページネーションを表示
     if(1 != $pages){
         echo '<div class="product__pagination">';
-        echo '<ul>';
-        //1ページ目でなければ「前のページ」リンクを表示
-        if($paged > 1){
-            echo '<li class="prev"><a href="' . esc_url(get_pagenum_link($paged - 1 )) . '">前のページ</a></li>';
-        }
+        echo '<ul class="pages">';
 
         //ページ番号を表示(現在のページはリンクにしない)
         for($i=1; $i <= $pages; $i++){
             if(1 != $pages &&(!($i >= $paged+$range+1 || $i <= $paged-$range-1)|| $pages <= $showitems)) {
                 if ($paged ==  $i){
-                    echo '<li class="active">' ,$i. '</li';
+                    echo '<li class="pages__page">' ,$i. '</li>';
                 } else{
-                    echo '<li><a href="' . esc_url(get_pagenum_link($i)) . '">' ,$i. '</a></li>';
+                    echo '<li class="pages_page"><a href="' . esc_url(get_pagenum_link($i)) . '">' ,$i. '</a></li>';
                 }
             }
         }
