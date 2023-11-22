@@ -43,7 +43,13 @@
         <?php wp_reset_postdata(); ?>
 
 		<div class="product__pagination">
+
         <?php
+            if (function_exists("pagination")){
+                pagination($wp_query -> max_num_pages);
+            }
+        ?>
+        <!-- php
             echo paginate_links(array(
                 'total' => $query->max_num_pages,
                 'current' => max(1, get_query_var('paged')),
@@ -51,14 +57,14 @@
                 'prev_text' => __('&laquo; Previous'),
                 'next_text' => __('Next &raquo;'),
             ));
-        ?>
+         -->
 
         <!-- <ul class="pages">
 				<li class="pages__page">
 					<a href="#">1</a>
 				</li>
 				<li class="pages__page">
-					<a href="<?php echo esc_url(home_url('/category/products/page/2')); ?>">2</a>
+					<a href="php echo esc_url(home_url('/category/products/page/2')); ?>">2</a>
 				</li>
 			</ul> -->
 		</div>

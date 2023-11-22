@@ -25,10 +25,10 @@
 				$post_id = get_the_ID(); //現在の投稿のIDを取得
 			?>
 				<a class="contents" href="<?php the_permalink(); ?>">
-				<div class="contents__figcontainer"><img alt="chair" src="<?php echo get_stylesheet_directory_uri(); ?>/img/item<?php echo $loop_counter?>.jpg"></div>
+				<div class="contents__figcontainer"><img alt="<?php the_title();?>" src="<?php echo get_stylesheet_directory_uri(); ?>/img/item<?php echo $loop_counter?>.jpg"></div>
 				<div class="contents__description">
 				<p><?php the_title();?></p>
-				<p>¥<?php echo get_post_meta($post_id,'price',true)?> + tax</p>
+				<p>¥<?php echo get_post_meta($post_id,'price',true); ?> + tax</p>
 				</div></a>
 	        <?php endwhile; ?>
 		<?php endif; ?>
