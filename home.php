@@ -32,6 +32,7 @@
 				</div></a>
 	        <?php endwhile; ?>
 		<?php endif; ?>
+		<?php wp_reset_postdata(); ?>
 		</div><a class="main__viewmore" href="<?php echo esc_url(home_url('/category/products')); ?>">View More</a>
 	</main>
 

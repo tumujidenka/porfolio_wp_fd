@@ -5,17 +5,40 @@
 </head>
 <body>
     <?php get_template_part('/includes/header'); ?>
-    <main class="product">
-		<div class="product__headline">
+    <main
+        <?php 
+            if(get_query_var('paged') == 0){
+                echo 'class="product"';
+            }else{
+                echo 'class="product--product2"';
+            };
+        ?> 
+    >
+		<div 
+            <?php 
+                if(get_query_var('paged') == 0){
+                    echo 'class="product__headline"';
+                }else{
+                    echo 'class="product--product2__headline"';
+                };
+            ?> 
+        >
 			Products
 		</div>
-		<div class="inner-main">
+		<div 
+            <?php 
+                if(get_query_var('paged') == 0){
+                    echo 'class="inner-main"';
+                }else{
+                    echo 'class="inner-main--product2"';
+                };
+            ?> 
+        >
             <?php 
                 $loop_counter = 0; 
                 $args = array(
                     'post_type' => 'post',  // 投稿タイプ。通常の投稿の場合は'post'
                     'category_name' => 'products', //カテゴリの名称
-                    'posts_per_page' => 12, // 表示する投稿数
                     'orderby' => 'date',    // 日付でソート
                     'order' => 'ASC',        // 昇順（古い投稿から順）
                     'paged' => get_query_var('paged') ? get_query_var('paged') : 1 // 現在のページ番号
@@ -30,43 +53,26 @@
 
                     <a class="contents" href="<?php the_permalink(); ?>">
                     <div class="contents__figcontainer">
-                        <img alt="<?php the_title(); ?>" src="<?php echo get_stylesheet_directory_uri(); ?>/img/item<?php echo $loop_counter ?>.jpg"></div>
+                        <img alt="<?php get_the_title(); ?>" src="<?php echo the_post_thumbnail_url(get_the_ID(),'full');?>" > 
+                    </div>
                     <div class="contents__description">
                         <p><?php the_title();?></p>
                         <p>¥<?php echo get_post_meta($post_id,'price',true)?> + tax</p>
-                    </div></a>
+                    </div>
+                    </a>
 
-                    <?php endwhile; ?>
+                <?php endwhile; ?>
+                <?php wp_reset_postdata(); ?>
             <?php endif;?>
 		</div>
-
-        <?php wp_reset_postdata(); ?>
 
 		<div class="product__pagination">
 
         <?php
             if (function_exists("pagination")){
-                pagination($wp_query -> max_num_pages);
+                pagination($query -> max_num_pages);
             }
         ?>
-        <!-- php
-            echo paginate_links(array(
-                'total' => $query->max_num_pages,
-                'current' => max(1, get_query_var('paged')),
-                'format' => 'page/%#%',
-                'prev_text' => __('&laquo; Previous'),
-                'next_text' => __('Next &raquo;'),
-            ));
-         -->
-
-        <!-- <ul class="pages">
-				<li class="pages__page">
-					<a href="#">1</a>
-				</li>
-				<li class="pages__page">
-					<a href="php echo esc_url(home_url('/category/products/page/2')); ?>">2</a>
-				</li>
-			</ul> -->
 		</div>
 	</main>
 

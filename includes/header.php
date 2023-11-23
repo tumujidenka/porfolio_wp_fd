@@ -12,15 +12,13 @@
 				<nav class="inner-navigation__menu">
 					<ul class="nav-menu" id="nav-menu">
                         <?php
-                            $page_id_products = get_page_by_path('product');
-                            $page_title_products = get_the_title($page_id_products);
                             $page_id_about = get_page_by_path('about');
                             $page_title_about = get_the_title($page_id_about);
                             $page_id_company = get_page_by_path('company');
                             $page_title_company = get_the_title($page_id_company);
                         ?>
 						<li class="nav-menu__title">
-							<a href="<?php echo get_permalink($page_id_products);?>"><?php echo $page_title_products?></a>
+							<a href="<?php echo esc_url(home_url('/category/products')); ?>">PRODUCT</a>
 						</li>
 						<li class="nav-menu__title">
 							<a href="<?php echo get_permalink($page_id_about);?>"><?php echo $page_title_about ?></a>
